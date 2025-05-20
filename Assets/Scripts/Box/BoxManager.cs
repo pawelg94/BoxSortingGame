@@ -36,6 +36,10 @@ public class BoxManager : MonoBehaviour, IBoxManager
         return closest;
     }
 
+    public List<Box> GetAllBoxes()
+    {
+        return activeBoxes;
+    }
     public void Clear()
     {
         activeBoxes.Clear();

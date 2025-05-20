@@ -156,9 +156,7 @@ public class NpcController : MonoBehaviour
     public void PickUpBox(Box box)
     {
         carriedBox = box;
-        box.gameObject.SetActive(false);
-
-        box.boxNodeReference?.ReleaseNode();
+        box.gameObject.SetActive(false);        
         carryVisual?.ShowBox(box.boxColor);
     }
 
@@ -166,6 +164,7 @@ public class NpcController : MonoBehaviour
     {
         if (carriedBox == null) return;
 
+        carriedBox.boxNodeReference?.ReleaseNode();
         carriedBox.transform.position = transform.position;
         carriedBox.gameObject.SetActive(true);
 

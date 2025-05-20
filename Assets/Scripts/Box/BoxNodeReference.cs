@@ -9,7 +9,7 @@ public class BoxNodeReference : MonoBehaviour
     {
         if (currentNode != null)
         {
-            currentNode.IsOccupied = false;
+            //currentNode.SetOccupied(false);
             currentNode = null;
         }
     }

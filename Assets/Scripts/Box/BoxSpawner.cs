@@ -33,21 +33,13 @@ public class BoxSpawner : MonoBehaviour
 
     private void TrySpawnBox()
     {
-        List<Node> candidates = new List<Node>();
-
-        foreach (Node node in _cachedNodes)
-        {
-            if (!node.IsOccupied)
-                candidates.Add(node);
-        }
-
-        if (candidates.Count == 0)
+        if (_cachedNodes.Count == 0)
         {
             Debug.LogWarning("[BoxSpawner] No available nodes for box spawning.");
             return;
         }
 
-        Node selectedNode = SelectRandomFreeNode(candidates);
+        Node selectedNode = SelectRandomFreeNode(_cachedNodes);
         if (selectedNode == null)
         {
             Debug.LogWarning("[BoxSpawner] Failed to find unoccupied node after multiple attempts.");
@@ -71,11 +63,14 @@ public class BoxSpawner : MonoBehaviour
 
     private void SpawnBoxAt(Node node)
     {
-        node.IsOccupied = true;
+        if(!IsNodeValid(node))
+            Debug.Log("Occupied NODE, Skipping spawn...");
+
+        node.SetOccupied(true);
 
         Box.BoxColor color = UnityEngine.Random.value < 0.5f ? Box.BoxColor.Red : Box.BoxColor.Blue;
 
-        Box box = GameManager.Instance.Pool.Spawn(color, node.transform.position);        
+        Box box = GameManager.Instance.Pool.Spawn(color, node.transform.position);
 
         if (box.boxNodeReference != null)
             box.boxNodeReference.currentNode = node;
@@ -85,6 +80,20 @@ public class BoxSpawner : MonoBehaviour
 
         _currentBoxes++;
         OnBoxSpawned?.Invoke(node);
+    }
+
+    private bool IsNodeValid(Node node)
+    {
+        var boxes = GameManager.Instance.BoxManager.GetAllBoxes();
+
+        foreach (var item in boxes)
+        {
+            if (item.transform.position == node.transform.position)
+            {                
+                return false; 
+            }
+        }
+        return true;
     }
 
     public void NotifyBoxRemoved()

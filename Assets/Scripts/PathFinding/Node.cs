@@ -11,11 +11,16 @@ namespace AStarPathfinding
         public float gScore;
         public float hScore;
 
-        public bool IsOccupied = false;
+        public bool IsOccupied { get; private set; }
 
         public float FScore()
         {
             return gScore + hScore;
+        }
+
+        public void SetOccupied(bool state)
+        {
+            IsOccupied = state;
         }
 
         private void OnDrawGizmos()
