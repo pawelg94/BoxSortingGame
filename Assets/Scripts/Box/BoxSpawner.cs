@@ -63,9 +63,12 @@ public class BoxSpawner : MonoBehaviour
 
     private void SpawnBoxAt(Node node)
     {
-        if(!IsNodeValid(node))
+        if (!IsNodeValid(node))
+        {
             Debug.Log("Occupied NODE, Skipping spawn...");
-
+            return;
+        }
+            
         node.SetOccupied(true);
 
         Box.BoxColor color = UnityEngine.Random.value < 0.5f ? Box.BoxColor.Red : Box.BoxColor.Blue;
