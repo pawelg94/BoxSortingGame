@@ -135,6 +135,6 @@ MonoBehaviour:
   dropDuration: 0.5
   startScale: 0.8
   endScale: 0.5
-  enableLandingSquash: 1
+  enableLandingAnimation: 1
   squashScaleY: 0.4
   squashDuration: 0.1

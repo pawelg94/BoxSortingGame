@@ -120,7 +120,7 @@ public class NpcController : MonoBehaviour
     {
         if (targetTransform == null || pathfinding == null) return;
 
-        Node start = pathfinding.FindNearestNode(transform.position);
+        Node start = pathfinding.FindNearestNode(transform.position, true);
         Node end = pathfinding.FindNearestNode(targetTransform.position, true);
 
         if (start == null || end == null) return;
@@ -170,6 +170,8 @@ public class NpcController : MonoBehaviour
         carriedBox.gameObject.SetActive(true);
 
         boxPool.Despawn(carriedBox);
+        GameManager.Instance.Spawner.NotifyBoxRemoved();
+
         carriedBox = null;
         targetBox = null;
 

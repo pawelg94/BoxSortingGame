@@ -11,10 +11,12 @@ public class GameManager : MonoBehaviour
 
     public NpcController NPC;
 
+    public BoxSpawner Spawner => spawner;
+
     [SerializeField] private AStarManager pathfinding;
     [SerializeField] private BoxManager boxManager;
     [SerializeField] private BoxPoolManager pool;
-    [SerializeField] private BoxSpawner Spawner;
+    [SerializeField] private BoxSpawner spawner;
 
 
     public Transform redDropZone;

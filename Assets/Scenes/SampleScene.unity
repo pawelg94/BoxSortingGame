@@ -8668,7 +8668,7 @@ MonoBehaviour:
   pathfinding: {fileID: 1652856582}
   boxManager: {fileID: 1753427070}
   pool: {fileID: 940070145}
-  Spawner: {fileID: 1910386967}
+  spawner: {fileID: 1910386967}
   redDropZone: {fileID: 1511064685}
   blueDropZone: {fileID: 1211227533}
 --- !u!1 &1699439451
@@ -10319,7 +10319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb34956506fb5924ca9cef6694ea5091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 3
+  spawnInterval: 1
   maxBoxesAtATime: 30
 --- !u!1 &1914158272
 GameObject:
